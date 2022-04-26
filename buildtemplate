@@ -23,3 +23,30 @@ python3 -m tutorial1 \
     --temp_location gs://test-dataflow-classic/temp \
     --template_location gs://test-dataflow-classic/templates/tutorial \
     --region us-west2
+
+
+
+python -m apache_beam.examples.wordcount --project $DEVSHELL_PROJECT_ID \
+  --runner DataflowRunner \
+  --staging_location $BUCKET/staging \
+  --temp_location $BUCKET/temp \
+  --output $BUCKET/results/output \
+  --region us-central1
+
+
+python -m app.dataflow-test1 \
+  --runner DataflowRunner \
+  --project ita-datalakepoc \
+  --staging_location gs://test-dataflow-custom/staging \
+  --temp_location gs://test-dataflow-custom/temp \
+  --template_location gs://test-dataflow-custom/templates/custom1 \
+  --output gs://test-dataflow-custom/results/wordcounts \
+  --region us-west2
+
+python -m app.dataflow-test1 \
+  --runner DataflowRunner \
+  --project ita-datalakepoc \
+  --staging_location gs://test-dataflow-custom/staging \
+  --temp_location gs://test-dataflow-custom/temp \
+  --output gs://test-dataflow-custom/output/wordcounts \
+  --region us-west2
