@@ -1,0 +1,25 @@
+  python3 -m https://github.com/joshtranlacity/dataflow-testing/blob/main/tutorial \
+    --runner DataflowRunner \
+    --project ita-datalakepoc \
+    --staging_location gs://test-dataflow-classic/staging \
+    --temp_location gs://test-dataflow-classic/temp \
+    --template_location gs://test-dataflow-classic/templates/tutorial \
+    --region us-west2
+
+
+  python3 -m gs://test-dataflow-custom/templates/tutorial \
+    --runner DataflowRunner \
+    --project ita-datalakepoc \
+    --staging_location gs://test-dataflow-classic/staging \
+    --temp_location gs://test-dataflow-classic/temp \
+    --template_location gs://test-dataflow-classic/templates/tutorial \
+    --region us-west2
+
+
+python3 -m tutorial1 \
+    --runner DataflowRunner \
+    --project ita-datalakepoc \
+    --staging_location gs://test-dataflow-classic/staging \
+    --temp_location gs://test-dataflow-classic/temp \
+    --template_location gs://test-dataflow-classic/templates/tutorial \
+    --region us-west2
