@@ -1,0 +1,6 @@
+PROJECT=ita-datalakepoc
+STAGING_LOCATION=gs://test-dataflow-custom/staging
+TEMP_LOCATION=gs://test-dataflow-custom/temp
+OUTPUT=gs://test-dataflow-custom/results/zwordcounts
+INPUT=gs://dataflow-samples/shakespeare/kinglear.txt
+REGION=us-west2
