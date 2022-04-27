@@ -99,7 +99,7 @@ def run(argv=None, save_main_session=True):
     with beam.Pipeline(options=pipeline_options) as p:
 
         # Read the text file[pattern] into a PCollection.
-        lines = p | 'Read' >> ReadFromText(known_args.input)
+        lines = p | 'Read' >> ReadFromText(wordcount_options.input)
 
         counts = (
             lines
@@ -115,7 +115,7 @@ def run(argv=None, save_main_session=True):
 
         # Write the output using a "Write" transform that has side effects.
         # pylint: disable=expression-not-assigned
-        output | 'Write' >> WriteToText(known_args.output)
+        output | 'Write' >> WriteToText(wordcount_options.output)
 
 
 if __name__ == '__main__':

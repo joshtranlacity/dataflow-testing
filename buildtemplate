@@ -88,3 +88,14 @@ python3 -m dataflow-testing.dataflow-test2 \
   --template_location gs://test-dataflow-custom/templates/custom2 \
   --output gs://test-dataflow-custom/results/wordcounts \
   --region us-west2
+
+
+python3 -m dataflow-testing.dataflow-test1 \
+  --runner DataflowRunner \
+  --project ita-datalakepoc \
+  --staging_location gs://test-dataflow-custom/staging \
+  --temp_location gs://test-dataflow-custom/temp \
+  --template_location gs://test-dataflow-custom/templates/custom1 \
+  --output gs://test-dataflow-custom/results/wordcounts \
+  --input gs://dataflow-samples/shakespeare/kinglear.txt \
+  --region us-west2
