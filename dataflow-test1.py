@@ -39,6 +39,7 @@ from apache_beam.io import ReadFromText
 from apache_beam.io import WriteToText
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
+from apache_beam.options.value_provider import RuntimeValueProvider
 
 
 class WordExtractingDoFn(beam.DoFn):
@@ -57,12 +58,12 @@ class WordExtractingDoFn(beam.DoFn):
 def run(argv=None, save_main_session=True):
   """Main entry point; defines and runs the wordcount pipeline."""
   parser = argparse.ArgumentParser()
-  parser.add_argument(
+  parser.add_value_provider_argument(
       '--input',
       dest='input',
       default='gs://dataflow-samples/shakespeare/kinglear.txt',
       help='Input file to process.')
-  parser.add_argument(
+  parser.add_value_provider_argument(
       '--output',
       dest='output',
       required=True,
