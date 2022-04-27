@@ -63,30 +63,37 @@ class WordcountOptions(PipelineOptions):
             '--input',
             default='gs://dataflow-samples/shakespeare/kinglear.txt',
             help='Path of the file to read from')
-        parser.add_argument(
+        parser.add_value_provider_argument(
             '--output',
             required=True,
             help='Output file to write results to.')
 
 def run(argv=None, save_main_session=True):
     """Main entry point; defines and runs the wordcount pipeline."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        '--input',
-        dest='input',
-        default='gs://dataflow-samples/shakespeare/kinglear.txt',
-        help='Input file to process.')
-    parser.add_argument(
-        '--output',
-        dest='output',
-        required=True,
-        help='Output file to write results to.')
-    known_args, pipeline_args = parser.parse_known_args(argv)
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument(
+    #     '--input',
+    #     dest='input',
+    #     default='gs://dataflow-samples/shakespeare/kinglear.txt',
+    #     help='Input file to process.')
+    # parser.add_argument(
+    #     '--output',
+    #     dest='output',
+    #     required=True,
+    #     help='Output file to write results to.')
+    # known_args, pipeline_args = parser.parse_known_args(argv)
 
     # We use the save_main_session option because one or more DoFn's in this
     # workflow rely on global context (e.g., a module imported at module level).
+    
+    wordcount_options = PipelineOptions().view_as(WordcountOptions)
+    parser = argparse.ArgumentParser()
+    known_args, pipeline_args = parser.parse_known_args(argv)
+
+
     pipeline_options = PipelineOptions(pipeline_args)
     pipeline_options.view_as(SetupOptions).save_main_session = save_main_session
+    
 
     # The pipeline will be run on exiting the with block.
     with beam.Pipeline(options=pipeline_options) as p:
